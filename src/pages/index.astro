@@ -1,24 +1,32 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-import Title from '../components/test.astro'
 
-let mynum =20;
-const animal =["ant","cat"]
-const object ={
+import '../styles/global.css'; // Make sure this is imported
+import Welcome from "../components/Welcome.astro";
+
+let mynum = 20;
+const animal = ["ant", "cat"];
+const object = {
 	name: "chris",
-	age: 12
-}
+	age: 12,
+};
+
+let Abby = "Abby";
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
+<div class="bg-sky-500">
+	<Welcome>
+		<div>The number is {mynum}</div>
+		<div>This size is {animal}</div>
+		<p>{object.name}</p>
+		<p>{object.age + 2}</p>
+		<p>{Abby}</p>
+	</Welcome>
+</div>
 
-<Layout>
-	<Welcome />
-	<Title/>
-	<div>The number is {mynum}</div>
-	<div>This size is {animal}</div>
-	<p>{object.name}</p>
-	<p>{object.age + 2}</p>
+<h1 class="text-5xl font-bold underline bg-green m-[20px]">Hello, Tailwind in Astro!</h1>
 
-</Layout>
+<p class="text-red-600 p-4">
+  This is a paragraph with Tailwind styles.
+</p>
+
