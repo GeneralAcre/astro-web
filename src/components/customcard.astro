@@ -1,0 +1,50 @@
+---
+interface Props {
+  title: string; // The main title/heading of the card
+  description: string; // The main text content of the card
+  // Badge is an optional object, with text and a 'color' (acting as variant)
+  badge?:{text:string,color: "easy" | "normal" | "hard"};
+  upperSection?:string;    
+}
+
+const {title,description,badge, upperSection} = Astro.props; // Destructure ...attrs too for the main div
+
+const customBadgeStyles = {
+  'easy': 'bg-[#ffa5ab] text-white ',
+  'normal': 'bg-[#a53860] text-white animate-pulse',
+  'hard': 'bg-[#450920] text-white',
+};
+
+// Determine the classes for the badge based on the 'color' prop from the badge object
+// If badge.color is not provided or not found in customBadgeStyles, default to 'default'
+const selectedBadgeClasses = (badge?.color && customBadgeStyles[badge.color])
+  ? customBadgeStyles[badge.color]
+  : '';
+
+const baseBadgeClasses =
+  'inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold';
+  let upperSectionStyle = '';
+  let upperSectionClasses = 'h-[30%] w-full flex-shrink-0 relative overflow-hidden'; // Base classes for upper section
+
+---
+
+<div class="bg-[#edddd4] rounded-lg shadow-md flex flex-col border border-gray-100 overflow-hidden">
+  {/* Upper Section (30% height) - now only for color */}
+  <div class={upperSectionClasses} style={upperSectionStyle}>
+    {/* Removed all image-related rendering logic */}
+  </div>
+
+  {/* Lower Section (Remaining height, contains your info) */}
+  <div class="p-6 flex flex-col gap-3 h-[70%] flex-grow">
+    <h3 class="text-xl font-semibold text-gray-900">{title}</h3>
+    <p class="text-gray-700 text-base">{description}</p>
+
+    {badge?.text && (
+      <div class="mt-2 self-start">
+        <div class:list={[baseBadgeClasses, selectedBadgeClasses]}>
+          {badge.text}
+        </div>
+      </div>
+    )}
+  </div>
+</div>

@@ -1,10 +1,19 @@
 {
-  "extends": "astro/tsconfigs/strict",
+  "extends": "astro/tsconfigs/strict", // Or whatever extends your project uses
+  "compilerOptions": {
+    // ... other compiler options ...
+    "baseUrl": ".", // Make sure baseUrl is set to "."
+    "paths": {
+      "@/*": ["./src/*"] // Add this line if it's not there
+    },
+    // Important for Shadcn UI and React components in Astro
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  },
   "include": [
     ".astro/types.d.ts",
     "**/*"
+    // ... potentially other includes like "src/**/*.ts", "src/**/*.tsx"
   ],
-  "exclude": [
-    "dist"
-  ]
+  "exclude": ["dist"]
 }

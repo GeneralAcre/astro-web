@@ -1,0 +1,20 @@
+---
+import Layout from '../layouts/Layout.astro'; // Import this to every page for using Tailwind,cause tailwind inside this
+import { Button } from "@/components/ui/button"
+interface Props {
+  href?: string; // Optional URL for navigation
+  variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link'; // Example: Pass button variants
+  size?: 'default' | 'sm' | 'lg' | 'icon';
+  color?: string;
+}
+
+const { href, variant, size ,color} = Astro.props;
+---
+
+    <div>
+        <a href={href}>
+        <Button variant={variant} size={size}>
+            <slot />
+        </Button>
+        </a>
+    </div>
